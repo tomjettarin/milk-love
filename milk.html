@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>for you</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Prompt', sans-serif;
+      background-color: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 2;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      border: none;
+      background-color: #ff80ab;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d63384;
+      font-weight: bold;
+      min-height: 40px;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button onclick="showLove()">คลิกสิ</button>
+    <div class="message" id="loveMessage"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "รักเธอที่สุดในโลกเลยนะ",
+      "อยู่กับเธอแล้วมีความสุขมากเลย",
+      "ทุกวันคือวันพิเศษ เพราะมีเธอ",
+      "หัวใจดวงนี้เป็นของเธอคนเดียว"
+    ];
+
+    function showLove() {
+      const random = Math.floor(Math.random() * messages.length);
+      document.getElementById("loveMessage").textContent = messages[random];
+    }
+
+    // Generate floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }, 500);
+  </script>
+
+</body>
+</html>
